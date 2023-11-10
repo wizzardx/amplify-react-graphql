@@ -61,6 +61,7 @@ const App = ({ signOut }) => {
   async function deleteNote({ id }) {
     const newNotes = notes.filter((note) => note.id !== id);
     setNotes(newNotes);
+    await Storage.remove(name);
     await API.graphql({
       query: deleteNoteMutation,
       variables: { input: { id } },
